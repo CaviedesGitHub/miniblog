@@ -31,7 +31,7 @@ class Post(db.Model):
                 self.title_slug = f'{slugify(self.title)}-{count}'
 
     def public_url(self):
-        return url_for('show_post', slug=self.title_slug)
+        return url_for('public.show_post', slug=self.title_slug)
 
     @staticmethod
     def get_by_slug(slug):
