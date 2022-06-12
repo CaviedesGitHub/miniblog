@@ -5,7 +5,6 @@ from flask_sqlalchemy import SQLAlchemy
 login_manager = LoginManager()
 db = SQLAlchemy()
 
-
 def create_app(settings_module):
     app = Flask(__name__, instance_relative_config=True)
     # Load the config file specified by the APP environment variable
