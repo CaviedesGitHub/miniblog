@@ -1,4 +1,5 @@
 from flask import abort, render_template
+from werkzeug.exceptions import NotFound
 
 from app.models import Post
 from . import public_bp
@@ -12,5 +13,6 @@ def index():
 def show_post(slug):
     post = Post.get_by_slug(slug)
     if post is None:
-        abort(404)
+        raise NotFound(slug)
+        #abort(404)
     return render_template("public/post_view.html", post=post)
