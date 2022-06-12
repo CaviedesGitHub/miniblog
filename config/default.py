@@ -4,9 +4,12 @@ from os.path import abspath, dirname
 
 # Define the application directory
 BASE_DIR = dirname(dirname(abspath(__file__)))
+print("BASE_DIR: ", BASE_DIR)
 SECRET_KEY = '7110c8ae51a4b5af97be6534caef90e4bb9bdcb3380af008f90b23a5d1616bf319bc298105da20fe'
+print("SECRET_KEY: ", SECRET_KEY)
 # Database configuration
 SQLALCHEMY_TRACK_MODIFICATIONS = False
+print("SQLALCHEMY_TRACK_MODIFICATIONS: ", SQLALCHEMY_TRACK_MODIFICATIONS)
 
 # App environments
 APP_ENV_LOCAL = 'local'
