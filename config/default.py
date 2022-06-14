@@ -18,3 +18,13 @@ APP_ENV_DEVELOPMENT = 'development'
 APP_ENV_STAGING = 'staging'
 APP_ENV_PRODUCTION = 'production'
 APP_ENV = ''
+
+# Configuración del email
+MAIL_SERVER = 'smtp.live.com' #'smtp-relay.gmail.com' #'aspmx.l.google.com' #'smtp.gmail.com' #'smtp.live.com'
+MAIL_PORT = 587
+MAIL_USERNAME = 'caviedes72@hotmail.com'
+MAIL_PASSWORD = ''
+DONT_REPLY_FROM_EMAIL = 'dontreply@infoerror.com'
+ADMINS = ('LuisPadilla1250@gmail.com', )
+MAIL_USE_TLS = True
+MAIL_DEBUG = False
