@@ -5,6 +5,7 @@ import logging
 from logging.handlers import SMTPHandler
 from flask_migrate import Migrate
 from flask_mail import Mail 
+from app.common.filters import format_datetime
 
 login_manager = LoginManager()
 db = SQLAlchemy()
@@ -28,6 +29,9 @@ def create_app(settings_module):
     db.init_app(app)
     migrate.init_app(app, db)  # Se inicializa el objeto migrate
     mail.init_app(app)
+    
+    # Registro de los filtros
+    register_filters(app)
 
     # Registro de los Blueprints
     from .auth import auth_bp
@@ -121,3 +125,6 @@ def mail_handler_formatter():
         ''',
         datefmt='%d/%m/%Y %H:%M:%S'
     )
+
+def register_filters(app):
+    app.jinja_env.filters['datetime'] = format_datetime
