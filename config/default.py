@@ -1,6 +1,6 @@
 # config/default.py
 
-from os.path import abspath, dirname
+from os.path import abspath, dirname, join
 
 # Define the application directory
 BASE_DIR = dirname(dirname(abspath(__file__)))
@@ -31,3 +31,7 @@ MAIL_DEBUG = False
 
 ITEMS_PER_PAGE = 3
 ITEMSADMIN_PER_PAGE = 5
+
+# Media dir
+MEDIA_DIR = join(BASE_DIR, 'media')
+POSTS_IMAGES_DIR = join(MEDIA_DIR, 'posts')
