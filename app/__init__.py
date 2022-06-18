@@ -4,10 +4,12 @@ from flask_sqlalchemy import SQLAlchemy
 import logging
 from logging.handlers import SMTPHandler
 from flask_migrate import Migrate
+from flask_mail import Mail 
 
 login_manager = LoginManager()
 db = SQLAlchemy()
 migrate = Migrate()  # Se crea un objeto de tipo Migrate
+mail = Mail()
 
 def create_app(settings_module):
     app = Flask(__name__, instance_relative_config=True)
@@ -25,6 +27,7 @@ def create_app(settings_module):
 
     db.init_app(app)
     migrate.init_app(app, db)  # Se inicializa el objeto migrate
+    mail.init_app(app)
 
     # Registro de los Blueprints
     from .auth import auth_bp
