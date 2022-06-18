@@ -1,4 +1,4 @@
-from flask import render_template, redirect, url_for, abort
+from flask import current_app, render_template, redirect, request, url_for, abort
 from flask_login import login_required, current_user
 from app.auth.decorators import admin_required
 
@@ -15,8 +15,11 @@ logger = logging.getLogger(__name__)
 @login_required
 @admin_required
 def list_posts():
-    posts = Post.get_all()
-    return render_template("admin/posts.html", posts=posts)
+    logger.info('Mostrando los posts del blog')
+    page = int(request.args.get('page', 1))
+    per_page = current_app.config['ITEMSADMIN_PER_PAGE']
+    post_pagination = Post.all_paginated(page, per_page)
+    return render_template("admin/posts.html", post_pagination=post_pagination)
 
 @admin_bp.route("/admin/post/", methods=['GET', 'POST'])
 @login_required

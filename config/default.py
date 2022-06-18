@@ -28,3 +28,6 @@ DONT_REPLY_FROM_EMAIL = 'dontreply@infoerror.com'
 ADMINS = ('LuisPadilla1250@gmail.com', )
 MAIL_USE_TLS = True
 MAIL_DEBUG = False
+
+ITEMS_PER_PAGE = 3
+ITEMSADMIN_PER_PAGE = 5
