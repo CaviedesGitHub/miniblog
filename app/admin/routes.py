@@ -33,18 +33,15 @@ def post_form():
     if form.validate_on_submit():
         title = form.title.data
         content = form.content.data
+        file = form.post_image.data
         image_name = None
         # Comprueba si la petición contiene la parte del fichero
-        if 'post_image' in request.files:
-            file = request.files['post_image']
-            # Si el usuario no selecciona un fichero, el navegador
-            # enviará una parte vacía sin nombre de fichero
-            if file.filename:
-                image_name = secure_filename(file.filename)
-                images_dir = current_app.config['POSTS_IMAGES_DIR']
-                os.makedirs(images_dir, exist_ok=True)
-                file_path = os.path.join(images_dir, image_name)
-                file.save(file_path)
+        if file:
+            image_name = secure_filename(file.filename)
+            images_dir = current_app.config['POSTS_IMAGES_DIR']
+            os.makedirs(images_dir, exist_ok=True)
+            file_path = os.path.join(images_dir, image_name)
+            file.save(file_path)
         post = Post(user_id=current_user.id, title=title, content=content)
         post.image_name = image_name
         post.save()
@@ -68,6 +65,16 @@ def update_post_form(post_id):
         # Actualiza los campos del post existente
         post.title = form.title.data
         post.content = form.content.data
+        file = form.post_image.data
+        image_name = None
+        # Comprueba si la petición contiene la parte del fichero
+        if file:
+            image_name = secure_filename(file.filename)
+            images_dir = current_app.config['POSTS_IMAGES_DIR']
+            os.makedirs(images_dir, exist_ok=True)
+            file_path = os.path.join(images_dir, image_name)
+            file.save(file_path)
+        post.image_name = image_name
         post.save()
         logger.info(f'Guardando el post {post_id}')
         return redirect(url_for('admin.list_posts'))
